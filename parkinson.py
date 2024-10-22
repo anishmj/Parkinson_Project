@@ -18,7 +18,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.ensemble import VotingClassifier
 
 # loading the data from csv file to a Pandas DataFrame
-parkinsons_data = pd.read_csv('/content/parkinsons.csv')
+parkinsons_data = pd.read_csv('parkinsons.csv')
 
 # separating the features and target
 X = parkinsons_data.drop(columns=['name', 'status'], axis=1)
