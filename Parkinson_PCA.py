@@ -1,11 +1,10 @@
-
 import numpy as np
 import pickle
 import streamlit as st
 
 # Load the scaler and model
-scaler = pickle.load(open('E:/Parkinson/scaler.sav', 'rb'))
-loaded_model = pickle.load(open('E:/Parkinson_PCA/parkinsons_hybrid_model.sav', 'rb'))
+scaler = pickle.load(open('scaler.sav', 'rb'))  # Adjust the path if necessary
+loaded_model = pickle.load(open('parkinsons_hybrid_model.sav', 'rb'))  # Adjust the path if necessary
 
 def Parkinson(input_data):
     # changing input data to a numpy array
