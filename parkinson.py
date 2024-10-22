@@ -18,7 +18,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.ensemble import VotingClassifier
 
 # loading the data from csv file to a Pandas DataFrame
-parkinsons_data = pd.read_csv('parkinsons.csv')
+parkinsons_data = pd.read_csv('/content/parkinsons.csv')
 
 # separating the features and target
 X = parkinsons_data.drop(columns=['name', 'status'], axis=1)
@@ -61,18 +61,17 @@ test_data_accuracy = accuracy_score(Y_test, X_test_prediction)
 print('Accuracy score on test data: ', test_data_accuracy)
 
 # prediction on new data
-input_data = (197.07600,206.89600,192.05500,0.00289,0.00001,0.00166,0.00168,0.00498,0.01098,0.09700,0.00563,0.00680,0.00802,0.01689,0.00339,26.77500,0.422229,0.741367,-7.348300,0.177551,1.743867,0.085569)
+input_data = (197.07600, 206.89600, 192.05500, 0.00289, 0.00001, 0.00166, 0.00168, 0.00498,
+              0.01098, 0.09700, 0.00563, 0.00680, 0.00802, 0.01689, 0.00339, 26.77500,
+              0.422229, 0.741367, -7.348300, 0.177551, 1.743867, 0.085569)
 
-# changing input data to a numpy array
-input_data_as_numpy_array = np.asarray(input_data)
+# Creating a DataFrame for input data with the same feature names
+input_data_df = pd.DataFrame([input_data], columns=X.columns)
 
-# reshape the numpy array
-input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
+# Standardize the data using the DataFrame
+std_data = scaler.transform(input_data_df)
 
-# standardize the data
-std_data = scaler.transform(input_data_reshaped)
-
-# applying PCA to input data
+# Applying PCA to input data
 input_data_pca = pca.transform(std_data)
 
 # prediction using the hybrid model
@@ -83,17 +82,3 @@ if (prediction[0] == 0):
     print("The Person does not have Parkinson's Disease")
 else:
     print("The Person has Parkinson's Disease")
-
-import pickle
-
-# Train the hybrid model
-hybrid_model.fit(X_train, Y_train)
-
-# Save the trained model to a .sav file
-model_filename = 'parkinsons_hybrid_model.sav'
-pickle.dump(hybrid_model, open(model_filename, 'wb'))
-
-print(f"Model saved as {model_filename}")
-
-with open('scaler.sav', 'wb') as scaler_file:
-    pickle.dump(scaler, scaler_file)
