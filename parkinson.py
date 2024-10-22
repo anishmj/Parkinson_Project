@@ -84,32 +84,9 @@ if (prediction[0] == 0):
 else:
     print("The Person has Parkinson's Disease")
 
-# Configure Git with your GitHub email and name
-!git config --global user.email "mjanish19@gmail.com"
-!git config --global user.name "Anish MJ"
 
-!apt-get install git
 
-# Correct GitHub repository URL
-!git clone https://github.com/anishmj/Parkinson_Project.git
 
-!ls /content/Parkinson_Project
-
-# Move your code file into the repo
-!mv /content/your_parkinson_code.py /content/Parkinson_Project/
-
-# Commented out IPython magic to ensure Python compatibility.
-# Navigate to your repo folder
-# %cd https://github.com/anishmj/Parkinson_Project.git
-
-# Add the files to staging
-!git add .
-
-# Commit the changes
-!git commit -m "Added Parkinson code"
-
-# Push the changes to GitHub
-!git push origin main
 
 import numpy as np
 import pandas as pd
